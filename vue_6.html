@@ -5,28 +5,30 @@
 		<meta charset="UTF-8">
 		<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 		<style>
-			.circle{border-radius:50%; background:Grey; border:1px solid #ccc; display:inline-block;}
+			.circle{border-radius:50%; background:Grey; border:1px solid #ccc; display:inline-block; position: absolute;}
 		</style>
 	</head>
 	<body>
 	
 	<div id="app">
-		<orb v-bind:radius="40" v-bind:color="'white'"></orb>
+		<orb v-bind:radius="40" v-bind:color="'white'" v-bind:x="160" v-bind:y="60"></orb>
 		<orb 
 			v-for="orb in orbs"
 			v-bind:radius="orb.radius"
 			v-bind:color="orb.color"
+			v-bind:x="orb.x"
+			v-bind:y="orb.y"
 			v-bind:key="orb.id">
 		</orb>
 	</div>
 	
 	<script>
 	Vue.component('orb',{
-		props:['radius','color'],	
+		props:['radius','color', 'x', 'y'],	
 		template:
 		`<span 
 			v-bind:class="'circle'" 
-			v-bind:style="{'width':radius+'px', 'height':radius+'px', 'background':color}"
+			v-bind:style="{'width':radius+'px', 'height':radius+'px', 'background':color, 'left':x+'px', 'top':y+'px'}"
 			v-on:click="prompt();">
 		</span>`,
 		methods:{
@@ -43,13 +45,13 @@
 		
 		data:{
 			orbs:[
-				{id:1, radius:10, color:'green'},
-				{id:2, radius:15, color:'purple'},
-				{id:3, radius:20, color:'black'},
-				{id:4, radius:25, color:'blue'},
-				{id:5, radius:30, color:'orange'},
-				{id:6, radius:35, color:'yellow'},
-				{id:7, radius:45, color:'red'}
+				{id:1, radius:10, color:'green', x:5, y:15},
+				{id:2, radius:15, color:'purple', x:25, y:115},
+				{id:3, radius:20, color:'black', x:225, y:15},
+				{id:4, radius:25, color:'blue', x:35, y:155},
+				{id:5, radius:30, color:'orange', x:95, y:195},
+				{id:6, radius:35, color:'yellow', x:85, y:85},
+				{id:7, radius:45, color:'red', x:15, y:125}
 			]
 		},
 		
